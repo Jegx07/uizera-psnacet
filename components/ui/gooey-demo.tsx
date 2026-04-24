@@ -30,7 +30,10 @@ function GooeyDemo() {
         <p className="rounded-full border border-white/20 bg-white/8 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/75 backdrop-blur-md">
           UiPath Student Community
         </p>
-        <h1 className="text-[clamp(2.6rem,8vw,6rem)] font-extrabold leading-[0.92] tracking-[-0.04em] text-white">
+        <h1
+          className="text-[clamp(2.6rem,8vw,6rem)] font-extrabold leading-[0.92] tracking-[-0.04em] !text-white"
+          style={{ color: "#ffffff" }}
+        >
           Automate the Future with UI Zera Club
         </h1>
         <p className="max-w-2xl text-base leading-7 text-white/78 sm:text-lg">
