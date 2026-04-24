@@ -65,29 +65,31 @@ function About() {
           whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="space-y-10"
+          className="space-y-8 lg:space-y-10"
         >
-          <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
-            <div className="space-y-6">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:items-start xl:gap-14">
+            <div className="space-y-5 lg:pr-6">
               <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-orange">Who We Are</div>
               <h2 className="max-w-3xl text-[clamp(28px,4vw,48px)] font-extrabold leading-[1.02] tracking-[-0.04em] text-gray-900">
                 <TextReveal text="Building Tomorrow's RPA Leaders Today" />
               </h2>
-              <p className="max-w-2xl text-[16px] leading-8 text-gray-700">
-                UI Zera Club is the UiPath student community at PSNA College of Engineering and Technology. We bring students into a disciplined automation practice through sessions, demos, and collaborative problem solving.
-              </p>
-              <p className="max-w-2xl text-[16px] leading-8 text-gray-700">
-                The club exists to help students move from first principles to portfolio-ready automation work, with a culture that values clean workflows, reusable thinking, and visible output.
-              </p>
+              <div className="max-w-2xl space-y-3 text-[16px] leading-8 text-gray-700">
+                <p>
+                  UI Zera Club is the UiPath student community at PSNA College of Engineering and Technology. We bring students into a disciplined automation practice through sessions, demos, and collaborative problem solving.
+                </p>
+                <p>
+                  The club exists to help students move from first principles to portfolio-ready automation work, with a culture that values clean workflows, reusable thinking, and visible output.
+                </p>
+              </div>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+            <div className="grid w-full gap-4 sm:grid-cols-3 lg:max-w-md lg:grid-cols-1 lg:justify-self-end">
               {stats.map((stat) => (
                 <StatCounter
                   key={stat.label}
                   value={stat.value}
                   label={stat.label}
-                  className="bg-gray-100"
+                  className="bg-white lg:min-h-[126px]"
                 />
               ))}
             </div>
@@ -98,6 +100,7 @@ function About() {
             whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            className="pt-4 lg:pt-6"
           >
             <MagicBento
               cards={bentoCards}
