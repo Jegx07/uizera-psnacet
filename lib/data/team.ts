@@ -49,9 +49,18 @@ function createMember(name: string, role: string, department: TeamDepartment, in
 }
 
 export const facultyMembers: TeamMember[] = [
-  createMember("Dr. Pavalarajan", "Faculty Coordinator", "Faculty", 0, true),
-  createMember("Dr. Shahul Hammed", "Faculty Mentor", "Faculty", 1, true),
-  createMember("Mrs. Preethi", "Faculty Advisor", "Faculty", 2, true),
+  {
+    ...createMember("Dr. Pavalarajan", "Faculty Coordinator", "Faculty", 0, true),
+    image: "/images/faculty/pavalarajan.jpg",
+  },
+  {
+    ...createMember("Dr. Shahul Hammed", "Faculty Mentor", "Faculty", 1, true),
+    image: "/images/faculty/shahul-hammed.jpg",
+  },
+  {
+    ...createMember("Mrs. Preethi", "Faculty Advisor", "Faculty", 2, true),
+    image: "/images/faculty/preethi.jpg",
+  },
 ];
 
 export const currentSdc: TeamMember = {

@@ -48,7 +48,6 @@ function Team() {
 
           <div className="grid gap-4 md:grid-cols-3">
             {facultyMembers.map((member, index) => {
-              const offsetY = [0, -8, -4];
               return (
                 <motion.div
                   key={member.name}
@@ -56,22 +55,21 @@ function Team() {
                   whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: index * 0.08 }}
-                  style={{ transform: `translateY(${offsetY[index]}px)` }}
                 >
                   <Card interactive className="h-full p-6 group relative">
                     <div className="absolute inset-0 bg-gradient-to-br from-orange/0 via-orange/0 to-orange/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
-                    <div className="flex items-center gap-4 relative z-10">
+                    <div className="flex items-center gap-5 relative z-10">
                       <motion.div
-                        whileHover={{ scale: 1.1 }}
+                        whileHover={{ scale: 1.05 }}
                         transition={{ type: "spring", stiffness: 300 }}
                       >
                         <Image
                           src={member.image}
                           alt={member.alt}
-                          width={88}
-                          height={88}
+                          width={96}
+                          height={96}
                           unoptimized
-                          className="h-20 w-20 rounded-full border-2 border-gray-200 object-cover group-hover:border-orange transition-colors duration-300"
+                          className="h-24 w-24 rounded-full border-2 border-gray-200 bg-white object-cover group-hover:border-orange transition-colors duration-300"
                         />
                       </motion.div>
                       <div>
