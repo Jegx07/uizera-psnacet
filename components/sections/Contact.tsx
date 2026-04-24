@@ -22,11 +22,8 @@ function Contact() {
   };
 
   return (
-    <section id="contact" className="relative bg-gray-100 py-20 sm:py-24 overflow-hidden">
-      <div className="absolute inset-0 opacity-25 pointer-events-none" style={{
-        background: 'linear-gradient(135deg, rgba(250, 100, 0, 0.04), transparent 50%)'
-      }} />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="contact" className="bg-gray-100 py-20 sm:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={reducedMotion ? false : { opacity: 0, y: 40 }}
           whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
@@ -38,7 +35,7 @@ function Contact() {
             <div className="space-y-6 p-6 sm:p-8">
               <div>
                 <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-orange">Contact</div>
-                <h2 className="mt-2 text-[clamp(28px,4vw,48px)] font-extrabold tracking-[-0.04em] text-gray-900">
+                <h2 className="mt-2 text-[clamp(28px,4vw,48px)] font-bold tracking-[-0.04em] text-gray-900">
                   <TextReveal text="Reach the club, book a session, or ask about joining" />
                 </h2>
                 <p className="mt-3 max-w-2xl text-[16px] leading-8 text-gray-700">
