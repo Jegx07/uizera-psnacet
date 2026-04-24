@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
+import GooeyNav from "@/components/ui/GooeyNav";
 import { cn } from "@/lib/utils";
 import type { NavLink, SectionId } from "@/types";
 
@@ -26,6 +27,8 @@ function Navbar({ className }: NavbarProps) {
   const [activeSection, setActiveSection] = React.useState<SectionId>("home");
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const gooeyItems = React.useMemo(() => navLinks.map((link) => ({ label: link.label, href: link.href })), []);
 
   React.useEffect(() => {
     const handleScroll = (): void => setIsScrolled(window.scrollY > 40);
@@ -62,38 +65,31 @@ function Navbar({ className }: NavbarProps) {
   }, []);
 
   return (
-    <header className={cn("sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur-md", isScrolled && "shadow-[0_12px_32px_rgba(10,10,10,0.08)]", className)}>
+    <header
+      className={cn(
+        "sticky top-0 z-50 border-b border-white/45 bg-[linear-gradient(120deg,rgba(255,255,255,0.72),rgba(255,255,255,0.48))] backdrop-blur-xl",
+        isScrolled && "shadow-[0_18px_45px_rgba(10,10,10,0.12)]",
+        className,
+      )}
+    >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:h-20 sm:px-6 lg:px-8">
         <Link href="#home" className="flex items-center gap-2 text-[20px] font-bold tracking-[-0.04em] text-gray-900" data-cursor="link">
           <span>UI Zera</span>
           <span className="text-orange">•</span>
         </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary navigation">
-          {navLinks.map((link) => {
-            const isActive = activeSection === link.section;
-
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                data-cursor="link"
-                className={cn(
-                  "relative text-[14px] font-medium tracking-[-0.01em] text-gray-700 transition-colors hover:text-gray-900",
-                  isActive && "text-gray-900",
-                )}
-              >
-                {link.label}
-                <span
-                  className={cn(
-                    "absolute inset-x-0 -bottom-2 h-0.5 origin-left scale-x-0 rounded-full bg-orange transition-transform duration-300",
-                    isActive && "scale-x-100",
-                  )}
-                />
-              </Link>
-            );
-          })}
-        </nav>
+        <div className="hidden lg:flex lg:items-center">
+          <GooeyNav
+            items={gooeyItems}
+            particleCount={15}
+            particleDistances={[90, 10]}
+            particleR={100}
+            initialActiveIndex={0}
+            animationTime={600}
+            timeVariance={300}
+            colors={[1, 2, 3, 1, 2, 3, 2, 3]}
+          />
+        </div>
 
         <div className="hidden lg:flex">
           <Button asChild variant="primary" size="md">
@@ -122,7 +118,7 @@ function Navbar({ className }: NavbarProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="border-t border-gray-200 bg-white lg:hidden"
+            className="border-t border-white/45 bg-[linear-gradient(120deg,rgba(255,255,255,0.72),rgba(255,255,255,0.56))] backdrop-blur-xl lg:hidden"
           >
             <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-4 sm:px-6">
               {navLinks.map((link) => {
