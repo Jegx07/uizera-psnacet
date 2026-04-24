@@ -41,8 +41,11 @@ function Gallery() {
   }, [filteredItems]);
 
   return (
-    <section id="gallery" className="bg-white py-20 sm:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="gallery" className="relative bg-white py-20 sm:py-24 overflow-hidden">
+      <div className="absolute inset-0 opacity-35 pointer-events-none" style={{
+        background: 'radial-gradient(circle at 60% 20%, rgba(250, 100, 0, 0.05), transparent 40%)'
+      }} />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={reducedMotion ? false : { opacity: 0, y: 40 }}
           whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
@@ -53,7 +56,7 @@ function Gallery() {
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-orange">Gallery</div>
-              <h2 className="mt-2 text-[clamp(28px,4vw,48px)] font-bold tracking-[-0.04em] text-gray-900">
+              <h2 className="mt-2 text-[clamp(28px,4vw,48px)] font-extrabold tracking-[-0.04em] text-gray-900">
                 <TextReveal text="Moments from workshops, talks, and campus energy" />
               </h2>
               <p className="mt-3 max-w-2xl text-[16px] leading-8 text-gray-700">

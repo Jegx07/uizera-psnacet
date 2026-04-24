@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "photoswipe/style.css";
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
 
 :root {
   --c-orange: #fa6400;
@@ -22,7 +23,12 @@
   --c-ring: #fa6400;
   --c-shadow: 0 24px 80px rgba(10, 10, 10, 0.08);
   --c-shadow-soft: 0 12px 32px rgba(10, 10, 10, 0.06);
-  --font-display-base: var(--font-geist, "Geist", "Arial", sans-serif);
+  --c-orange-vibrant: #ff5722;
+  --c-orange-muted: #e08742;
+  --c-blue-accent: #2d7ee8;
+  --c-gray-950: #0d0d0d;
+  --c-gray-50: #fafafa;
+  --font-display-base: "Syne", var(--font-geist, "Geist", "Arial", sans-serif);
   --font-body-base: var(--font-dm-sans, "DM Sans", "Arial", sans-serif);
   --font-mono-base: var(--font-geist-mono, "Geist Mono", "SFMono-Regular", monospace);
   color-scheme: light;
@@ -33,6 +39,9 @@
   --color-orange-light: var(--c-orange-light);
   --color-orange-pale: var(--c-orange-pale);
   --color-orange-dark: var(--c-orange-dark);
+  --color-orange-vibrant: var(--c-orange-vibrant);
+  --color-orange-muted: var(--c-orange-muted);
+  --color-blue-accent: var(--c-blue-accent);
   --color-black: var(--c-black);
   --color-black-soft: var(--c-black-soft);
   --color-gray-900: var(--c-gray-900);
@@ -40,6 +49,8 @@
   --color-gray-400: var(--c-gray-400);
   --color-gray-200: var(--c-gray-200);
   --color-gray-100: var(--c-gray-100);
+  --color-gray-950: var(--c-gray-950);
+  --color-gray-50: var(--c-gray-50);
   --color-white: var(--c-white);
   --font-sans: var(--font-body-base);
   --font-mono: var(--font-mono-base);
@@ -61,6 +72,13 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.01) 2px,
+      rgba(0, 0, 0, 0.01) 4px
+    ),
     radial-gradient(circle at 15% 8%, rgba(250, 100, 0, 0.05), transparent 24%),
     radial-gradient(circle at 85% 12%, rgba(250, 100, 0, 0.03), transparent 18%),
     linear-gradient(180deg, #ffffff 0%, #ffffff 58%, #f7f7f7 100%);

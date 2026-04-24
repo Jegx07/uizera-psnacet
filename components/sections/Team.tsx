@@ -24,8 +24,11 @@ function Team() {
   }, [activeFilter]);
 
   return (
-    <section id="team" className="bg-gray-100 py-20 sm:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="team" className="relative bg-gray-100 py-20 sm:py-24 overflow-hidden">
+      <div className="absolute inset-0 opacity-30 pointer-events-none" style={{
+        background: 'repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(250, 100, 0, 0.02) 40px, rgba(250, 100, 0, 0.02) 80px)'
+      }} />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={reducedMotion ? false : { opacity: 0, y: 40 }}
           whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
@@ -35,7 +38,7 @@ function Team() {
         >
           <div className="space-y-4">
             <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-orange">The People</div>
-            <h2 className="max-w-4xl text-[clamp(28px,4vw,48px)] font-bold leading-[1.02] tracking-[-0.04em] text-gray-900">
+            <h2 className="max-w-4xl text-[clamp(28px,4vw,48px)] font-extrabold leading-[1.02] tracking-[-0.04em] text-gray-900">
               <TextReveal text="Meet the faculty, champions, and student builders behind UI Zera" />
             </h2>
             <p className="max-w-2xl text-[16px] leading-8 text-gray-700">
@@ -44,33 +47,43 @@ function Team() {
           </div>
 
           <div className="grid gap-4 md:grid-cols-3">
-            {facultyMembers.map((member, index) => (
-              <motion.div
-                key={member.name}
-                initial={reducedMotion ? false : { opacity: 0, y: 24 }}
-                whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: index * 0.08 }}
-              >
-                <Card interactive className="h-full p-6">
-                  <div className="flex items-center gap-4">
-                    <Image
-                      src={member.image}
-                      alt={member.alt}
-                      width={88}
-                      height={88}
-                      unoptimized
-                      className="h-20 w-20 rounded-full border border-gray-200 object-cover"
-                    />
-                    <div>
-                      <Badge variant="soft">Faculty</Badge>
-                      <h3 className="mt-3 text-[20px] font-semibold tracking-[-0.04em] text-gray-900">{member.name}</h3>
-                      <p className="mt-1 text-[15px] text-gray-700">{member.role}</p>
+            {facultyMembers.map((member, index) => {
+              const offsetY = [0, -8, -4];
+              return (
+                <motion.div
+                  key={member.name}
+                  initial={reducedMotion ? false : { opacity: 0, y: 24 }}
+                  whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: index * 0.08 }}
+                  style={{ transform: `translateY(${offsetY[index]}px)` }}
+                >
+                  <Card interactive className="h-full p-6 group relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-orange/0 via-orange/0 to-orange/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+                    <div className="flex items-center gap-4 relative z-10">
+                      <motion.div
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        <Image
+                          src={member.image}
+                          alt={member.alt}
+                          width={88}
+                          height={88}
+                          unoptimized
+                          className="h-20 w-20 rounded-full border-2 border-gray-200 object-cover group-hover:border-orange transition-colors duration-300"
+                        />
+                      </motion.div>
+                      <div>
+                        <Badge variant="soft">Faculty</Badge>
+                        <h3 className="mt-3 text-[20px] font-semibold tracking-[-0.04em] text-gray-900 group-hover:text-orange transition-colors duration-300">{member.name}</h3>
+                        <p className="mt-1 text-[15px] text-gray-700">{member.role}</p>
+                      </div>
                     </div>
-                  </div>
-                </Card>
-              </motion.div>
-            ))}
+                  </Card>
+                </motion.div>
+              );
+            })}
           </div>
 
           <Card className="overflow-hidden border-orange/20 bg-orange-pale p-0">

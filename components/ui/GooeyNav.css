@@ -1,8 +1,8 @@
 .gooey-nav-container {
   --gooey-nav-color-1: #ffffff;
-  --gooey-nav-color-2: #fa6400;
-  --gooey-nav-color-3: #111111;
-  --gooey-nav-color-4: #ffd8bd;
+  --gooey-nav-color-2: #ff5722;
+  --gooey-nav-color-3: #0d0d0d;
+  --gooey-nav-color-4: #fa6400;
   position: relative;
 }
 

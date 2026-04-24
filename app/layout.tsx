@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans, Geist, Geist_Mono } from "next/font/google";
 
-import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
-import { Navbar } from "@/components/layout/Navbar";
+import { CustomCursorRenderer } from "@/components/layout/CustomCursorRenderer";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { cn } from "@/lib/utils";
 
@@ -22,9 +21,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn(geist.variable, dmSans.variable, geistMono.variable, "bg-white text-gray-900 antialiased") }>
+        <CustomCursorRenderer />
         <ScrollProgress />
-        <AnnouncementBar />
-        <Navbar />
         {children}
       </body>
     </html>

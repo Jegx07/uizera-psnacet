@@ -11,8 +11,8 @@ function Card({ className, interactive = false, ...props }: CardProps) {
     <div
       data-cursor={interactive ? "link" : undefined}
       className={cn(
-        "rounded-2xl border border-gray-200 bg-white shadow-none transition-all duration-300",
-        interactive && "hover:-translate-y-1 hover:border-orange hover:shadow-[0_18px_40px_rgba(10,10,10,0.08)]",
+        "rounded-2xl border border-gray-200 bg-white shadow-none transition-all duration-300 ease-out",
+        interactive && "hover:-translate-y-2 hover:border-orange hover:shadow-[0_24px_48px_rgba(10,10,10,0.12)]  hover:scale-[1.01]",
         className,
       )}
       {...props}

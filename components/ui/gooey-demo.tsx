@@ -1,19 +1,54 @@
 "use client"
 
+import dynamic from "next/dynamic"
 import { GooeyFilter } from "@/components/ui/gooey-filter"
 import { PixelTrail } from "@/components/ui/pixel-trail"
+import Beams from "@/components/ui/Beams"
 import { useScreenSize } from "@/hooks/use-screen-size"
+
+const PillNav = dynamic(() => import("@/components/ui/PillNav"), { ssr: false })
 
 function GooeyDemo() {
   const screenSize = useScreenSize()
+  const navItems = [
+    { label: "Home", href: "#home" },
+    { label: "About", href: "#about" },
+    { label: "Team", href: "#team" },
+    { label: "Events", href: "#events" },
+    { label: "Gallery", href: "#gallery" },
+    { label: "Contact", href: "#contact" },
+  ]
 
   return (
     <div className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-black">
-      <img
-        src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
-        alt="background"
-        className="absolute inset-0 h-full w-full object-cover opacity-60"
-      />
+      <div className="absolute inset-0 h-full w-full opacity-75">
+        <Beams
+          beamWidth={2}
+          beamHeight={15}
+          beamNumber={12}
+          lightColor="#ffffff"
+          speed={2}
+          noiseIntensity={1.75}
+          scale={0.2}
+          rotation={0}
+        />
+      </div>
+
+      <div className="absolute inset-0 bg-black/35" />
+
+      <div className="absolute top-5 left-1/2 z-20 hidden -translate-x-[-14%] lg:block">
+        <PillNav
+          items={navItems}
+          activeHref="#home"
+          className="hero-pill-nav"
+          ease="power2.easeOut"
+          baseColor="#111111"
+          pillColor="#fa6400"
+          hoveredPillTextColor="#fa6400"
+          pillTextColor="#111111"
+          initialLoadAnimation
+        />
+      </div>
 
       <GooeyFilter id="gooey-filter-pixel-trail" strength={5} />
 

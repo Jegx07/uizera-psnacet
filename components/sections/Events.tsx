@@ -71,8 +71,11 @@ function Events() {
   }, [activeFilter]);
 
   return (
-    <section id="events" className="bg-gray-100 py-20 sm:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="events" className="relative bg-gray-100 py-20 sm:py-24 overflow-hidden">
+      <div className="absolute inset-0 opacity-25 pointer-events-none" style={{
+        background: 'radial-gradient(circle at 15% 50%, rgba(250, 100, 0, 0.04), transparent 50%), radial-gradient(circle at 85% 50%, rgba(250, 100, 0, 0.02), transparent 50%)'
+      }} />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={reducedMotion ? false : { opacity: 0, y: 40 }}
           whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
@@ -200,17 +203,21 @@ function Events() {
               </div>
 
               <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                {visiblePastEvents.map((event, index) => (
-                  <motion.article
-                    key={event.id}
-                    initial={reducedMotion ? false : { opacity: 0, y: 24 }}
-                    whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: index * 0.04 }}
-                  >
-                    <EventCard event={event} />
-                  </motion.article>
-                ))}
+                {visiblePastEvents.map((event, index) => {
+                  const masonryClass = index % 5 === 2 ? "md:col-span-2" : "";
+                  return (
+                    <motion.article
+                      key={event.id}
+                      initial={reducedMotion ? false : { opacity: 0, y: 24 }}
+                      whileInView={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-100px" }}
+                      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: index * 0.04 }}
+                      className={masonryClass}
+                    >
+                      <EventCard event={event} />
+                    </motion.article>
+                  );
+                })}
               </div>
             </div>
           )}
@@ -222,29 +229,30 @@ function Events() {
 
 function EventCard({ event }: { event: EventItem }) {
   return (
-    <Card interactive className="group h-full overflow-hidden p-0">
-      <div className="border-l-4 border-orange p-6 transition-colors duration-300 group-hover:bg-orange-pale">
+    <Card interactive className="group h-full overflow-hidden p-0 relative">
+      <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-orange via-orange to-transparent opacity-100 group-hover:w-1.5 transition-all duration-300" />
+      <div className="border-l-4 border-orange p-6 transition-all duration-300 group-hover:bg-orange-pale group-hover:pl-8">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <div className="inline-flex rounded-full bg-orange px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-white">
+            <div className="inline-flex rounded-full bg-orange px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-white transition-transform duration-300 group-hover:scale-105">
               {event.dateLabel}
             </div>
-            <h3 className="mt-4 text-[20px] font-semibold tracking-[-0.04em] text-gray-900">{event.title}</h3>
+            <h3 className="mt-4 text-[20px] font-semibold tracking-[-0.04em] text-gray-900 group-hover:text-orange transition-colors duration-300">{event.title}</h3>
           </div>
           {event.tag ? <Badge variant="soft">{event.tag}</Badge> : null}
         </div>
 
         <div className="mt-4 space-y-2 text-[14px] text-gray-700">
-          {event.speaker ? <p className="font-medium text-gray-900">{event.speaker}</p> : null}
+          {event.speaker ? <p className="font-medium text-gray-900 group-hover:text-orange transition-colors duration-300">{event.speaker}</p> : null}
           <p>{event.summary}</p>
         </div>
 
         <div className="mt-5 flex items-center justify-between gap-3 text-[13px] text-gray-700">
-          <span className="inline-flex items-center gap-2">
+          <span className="inline-flex items-center gap-2 transition-transform duration-300 group-hover:translate-x-1">
             <MapPin className="h-4 w-4 text-orange" />
             {event.location}
           </span>
-          <span className="text-gray-400">{event.type}</span>
+          <span className="text-gray-400 group-hover:text-orange transition-colors duration-300">{event.type}</span>
         </div>
       </div>
     </Card>
